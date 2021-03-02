@@ -158,7 +158,6 @@ Polygon& Polygon::operator=(const Polygon& p)
 
 Polygon::~Polygon()
 {
-	ClosedPolygonalChain::~ClosedPolygonalChain();
 }
 
 
@@ -207,7 +206,6 @@ Triangle& Triangle::operator=(const Triangle& t)
 
 Triangle::~Triangle()
 {
-	Polygon::~Polygon();
 }
 
 bool Trapezoid::isTrapezoidIsosceles() const
@@ -238,7 +236,6 @@ Trapezoid& Trapezoid::operator=(const Trapezoid& tz)
 
 Trapezoid::~Trapezoid()
 {
-	Polygon::~Polygon();
 }
 
 double Trapezoid::height() const
@@ -284,7 +281,6 @@ RegularPolygon& RegularPolygon::operator=(const RegularPolygon& rp)
 
 RegularPolygon::~RegularPolygon()
 {
-	Polygon::~Polygon();
 }
 
 double RegularPolygon::Angle() const
