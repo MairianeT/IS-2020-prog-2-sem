@@ -81,15 +81,15 @@ Point PolygonalChain::getPoint(int k) const
 
 double PolygonalChain::perimeter() const
 {
-	double a = 0, P = 0;
+	double a = 0, p = 0;
 	for (int i = 0; i < Pn - 1; i++)
 	{
 		a = sqrt(((double)PointArray[i].getX() - (double)PointArray[i + 1].getX()) * ((double)PointArray[i].getX() - (double)PointArray[i + 1].getX()) +
 			((double)PointArray[i].getY() - (double)PointArray[i + 1].getY()) * ((double)PointArray[i].getY() - (double)PointArray[i + 1].getY()));
-		P += a;
+		p += a;
 	}
 
-	return P;
+	return p;
 }
 
 double ClosedPolygonalChain::perimeter() const
