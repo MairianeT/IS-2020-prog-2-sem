@@ -94,6 +94,7 @@ double PolygonalChain::perimeter() const
 
 double ClosedPolygonalChain::perimeter() const
 {
+	//todo copy-paste
 	double a = 0, p = 0;
 
 	for (int i = 0; i < Pn - 1; i++)
@@ -134,6 +135,7 @@ Polygon::Polygon(int n, Point pt_arr[]) :ClosedPolygonalChain(n, pt_arr)
 
 double Polygon::area() const
 {
+	//todo remove double
 	double s = 0;
 	for (int i = 0; i < Pn - 1; i++)
 	{
@@ -170,7 +172,7 @@ bool Triangle::isTriangleIsosceles() const
 		((double)PointArray[1].getY() - (double)PointArray[2].getY()) * ((double)PointArray[1].getY() - (double)PointArray[2].getY());
 	c2 = ((double)PointArray[0].getX() - (double)PointArray[2].getX()) * ((double)PointArray[0].getX() - (double)PointArray[2].getX()) +
 		((double)PointArray[0].getY() - (double)PointArray[2].getY()) * ((double)PointArray[0].getY() - (double)PointArray[2].getY());
-
+	//todo return expression
 	if (a2 == b2 || a2 == c2 || b2 == c2) return true;
 	else return false;
 }
@@ -252,7 +254,7 @@ double Trapezoid::height() const
 	return (2 * s) / (a + b);
 }
 
-
+//todo area and perimeter
 double RegularPolygon::SumAngle() const
 {
 	return ((double)Pn - 2) * 180;
