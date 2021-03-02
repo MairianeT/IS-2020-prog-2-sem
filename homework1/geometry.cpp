@@ -125,7 +125,6 @@ ClosedPolygonalChain& ClosedPolygonalChain::operator=(const ClosedPolygonalChain
 
 ClosedPolygonalChain::~ClosedPolygonalChain()
 {
-	PolygonalChain::~PolygonalChain();
 }
 
 
