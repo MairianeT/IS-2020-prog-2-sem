@@ -94,19 +94,19 @@ double PolygonalChain::perimeter() const
 
 double ClosedPolygonalChain::perimeter() const
 {
-	double a = 0, P = 0;
+	double a = 0, p = 0;
 
 	for (int i = 0; i < Pn - 1; i++)
 	{
 		a = sqrt(((double)PointArray[i].getX() - (double)PointArray[i + 1].getX()) * ((double)PointArray[i].getX() - (double)PointArray[i + 1].getX()) +
 			((double)PointArray[i].getY() - (double)PointArray[i + 1].getY()) * ((double)PointArray[i].getY() - (double)PointArray[i + 1].getY()));
-		P += a;
+		p += a;
 	}
 
-	P += sqrt(((double)PointArray[0].getX() - (double)PointArray[Pn - 1].getX()) * ((double)PointArray[0].getX() - (double)PointArray[Pn - 1].getX()) +
+	p += sqrt(((double)PointArray[0].getX() - (double)PointArray[Pn - 1].getX()) * ((double)PointArray[0].getX() - (double)PointArray[Pn - 1].getX()) +
 		((double)PointArray[0].getY() - (double)PointArray[Pn - 1].getY()) * ((double)PointArray[0].getY() - (double)PointArray[Pn - 1].getY()));
 
-	return P;
+	return p;
 }
 
 ClosedPolygonalChain::ClosedPolygonalChain(int n, Point pt_arr[]) :PolygonalChain(n, pt_arr)
@@ -135,16 +135,16 @@ Polygon::Polygon(int n, Point pt_arr[]) :ClosedPolygonalChain(n, pt_arr)
 
 double Polygon::area() const
 {
-	double S = 0;
+	double s = 0;
 	for (int i = 0; i < Pn - 1; i++)
 	{
-		S += (double)PointArray[i].getX() * (double)PointArray[i + 1].getY();
-		S -= (double)PointArray[i + 1].getX() * (double)PointArray[i].getY();
+		s += (double)PointArray[i].getX() * (double)PointArray[i + 1].getY();
+		s -= (double)PointArray[i + 1].getX() * (double)PointArray[i].getY();
 	}
 
-	S += (double)PointArray[Pn - 1].getX() * (double)PointArray[0].getY();
-	S -= (double)PointArray[0].getX() * (double)PointArray[Pn - 1].getY();
-	return fabs(S) / 2;
+	s += (double)PointArray[Pn - 1].getX() * (double)PointArray[0].getY();
+	s -= (double)PointArray[0].getX() * (double)PointArray[Pn - 1].getY();
+	return fabs(s) / 2;
 }
 
 Polygon::Polygon(const Polygon& p) :ClosedPolygonalChain(p)
@@ -244,7 +244,7 @@ Trapezoid::~Trapezoid()
 
 double Trapezoid::height() const
 {
-	double S = this->area();
+	double s = this->area();
 
 	double a, b;
 
@@ -253,7 +253,7 @@ double Trapezoid::height() const
 	b = sqrt(((double)PointArray[3].getX() - (double)PointArray[0].getX()) * ((double)PointArray[3].getX() - (double)PointArray[0].getX()) +
 		((double)PointArray[3].getY() - (double)PointArray[0].getY()) * ((double)PointArray[3].getY() - (double)PointArray[0].getY()));
 
-	return (2 * S) / (a + b);
+	return (2 * s) / (a + b);
 }
 
 
