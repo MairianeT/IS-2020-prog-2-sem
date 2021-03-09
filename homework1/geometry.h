@@ -28,7 +28,7 @@ public:
 	PolygonalChain(int n, Point pt_arr[]);
 	PolygonalChain(const PolygonalChain& pc);
 	PolygonalChain& operator=(const PolygonalChain& pc);
-	virtual ~PolygonalChain();
+	~PolygonalChain();
 
 	int getN() const { return Pn; }
 	Point getPoint(int k) const;
@@ -42,7 +42,6 @@ public:
 	ClosedPolygonalChain(int n, Point pt_arr[]);
 	ClosedPolygonalChain(const ClosedPolygonalChain& cpc);
 	ClosedPolygonalChain& operator=(const ClosedPolygonalChain& cpc);
-	virtual ~ClosedPolygonalChain();
 
 	virtual double perimeter() const;
 
@@ -54,7 +53,6 @@ public:
 	Polygon(int n, Point pt_arr[]);
 	Polygon(const Polygon& p);
 	Polygon& operator=(const Polygon& p);
-	virtual ~Polygon();
 
 	double area() const;
 };
@@ -65,7 +63,6 @@ public:
 	Triangle(int n, Point pt_arr[]);
 	Triangle(const Triangle& t);
 	Triangle& operator=(const Triangle& t);
-	virtual ~Triangle();
 
 	bool hasRightAngle() const;
 	bool isTriangleIsosceles() const;
@@ -77,7 +74,6 @@ public:
 	Trapezoid(int n, Point pt_arr[]);
 	Trapezoid(const Trapezoid& tz);
 	Trapezoid& operator=(const Trapezoid& tz);
-	virtual ~Trapezoid();
 
 	double height() const;
 };
@@ -88,7 +84,6 @@ public:
 	RegularPolygon(int n, Point pt_arr[]);
 	RegularPolygon(const RegularPolygon& rp);
 	RegularPolygon& operator=(const RegularPolygon& rp);
-	virtual ~RegularPolygon();
 
 	double Angle() const;
 	virtual double perimeter() const;
