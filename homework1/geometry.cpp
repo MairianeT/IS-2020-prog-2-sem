@@ -233,12 +233,6 @@ RegularPolygon& RegularPolygon::operator=(const RegularPolygon& rp)
 }
 
 
-double RegularPolygon::Angle() const
-{
-	double ang = ((double)pn - 2) * 180 / pn;
-	return ang;
-}
-
 double RegularPolygon::perimeter() const
 {
 	return pn * sqrt(side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY()));
