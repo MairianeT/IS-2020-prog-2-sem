@@ -4,8 +4,8 @@
 class Point
 {
 public:
-	int Px;
-	int Py;
+	int px;
+	int py;
 
 	Point();
 	Point(int x, int y);
@@ -14,24 +14,23 @@ public:
 
 	void SetPoint(int x, int y);
 
-	int getX() const { return Px; }
-	int getY() const { return Py; }
+	int getX() const { return px; }
+	int getY() const { return py; }
 };
 
 
 class PolygonalChain 
 {
 public:
-	int Pn;
+	int pn;
 	Point* PointArray;
 
 	PolygonalChain(int n, Point pt_arr[]);
 	PolygonalChain(const PolygonalChain& pc);
 	PolygonalChain& operator=(const PolygonalChain& pc);
-	//todo virtual
-	~PolygonalChain();
+	virtual ~PolygonalChain();
 
-	int getN() const { return Pn; }
+	int getN() const { return pn; }
 	Point getPoint(int k) const;
 
 	virtual double perimeter() const;
