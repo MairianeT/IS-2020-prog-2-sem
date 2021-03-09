@@ -126,12 +126,6 @@ ClosedPolygonalChain& ClosedPolygonalChain::operator=(const ClosedPolygonalChain
 	return *this;
 }
 
-ClosedPolygonalChain::~ClosedPolygonalChain()
-{
-	delete[] PointArray;
-	PointArray = nullptr;
-}
-
 
 Polygon::Polygon(int n, Point pt_arr[]) :ClosedPolygonalChain(n, pt_arr)
 {
@@ -159,12 +153,6 @@ Polygon& Polygon::operator=(const Polygon& p)
 {
 	ClosedPolygonalChain::operator=(p);
 	return *this;
-}
-
-Polygon::~Polygon()
-{
-	delete[] PointArray;
-	PointArray = nullptr;
 }
 
 
@@ -208,12 +196,6 @@ Triangle& Triangle::operator=(const Triangle& t)
 	return *this;
 }
 
-Triangle::~Triangle()
-{
-	delete[] PointArray;
-	PointArray = nullptr;
-}
-
 
 Trapezoid::Trapezoid(int n, Point* pt_arr) :Polygon(n, pt_arr)
 {
@@ -229,11 +211,6 @@ Trapezoid& Trapezoid::operator=(const Trapezoid& tz)
 	return *this;
 }
 
-Trapezoid::~Trapezoid()
-{
-	delete[] PointArray;
-	PointArray = nullptr;
-}
 
 double Trapezoid::height() const
 {
@@ -262,11 +239,6 @@ RegularPolygon& RegularPolygon::operator=(const RegularPolygon& rp)
 	return *this;
 }
 
-RegularPolygon::~RegularPolygon()
-{
-	delete[] PointArray;
-	PointArray = nullptr;
-}
 
 double RegularPolygon::Angle() const
 {
