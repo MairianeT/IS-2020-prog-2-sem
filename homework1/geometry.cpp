@@ -30,9 +30,9 @@ Point& Point::operator=(const Point& pt)
 {
 	if (&pt == this)
 		return *this;
-//todo variables shoudnt start with capital letter
-	Px = pt.Px;
-	Py = pt.Py;
+	//todo variables shoudnt start with capital letter
+	px = pt.px;
+	py = pt.py;
 	return *this;
 }
 
@@ -91,9 +91,9 @@ Point PolygonalChain::getPoint(int k) const
 double PolygonalChain::perimeter() const
 {
 	double a = 0, p = 0;
-	for (int i = 0; i < pc.Pn - 1; i++)
+	for (int i = 0; i < pn - 1; i++)
 	{
-		a = sqrt(side(pc.PointArray[i].getX(), pc.PointArray[i + 1].getX(), pc.PointArray[i].getY(), pc.PointArray[i + 1].getY()));
+		a = sqrt(side(PointArray[i].getX(), PointArray[i + 1].getX(), PointArray[i].getY(), PointArray[i + 1].getY()));
 		p += a;
 	}
 
@@ -104,8 +104,8 @@ double ClosedPolygonalChain::perimeter() const
 {
 	double a = 0, p = 0;
 
-	p += perimeterPC(*this);
-	p += sqrt(side(PointArray[0].getX(), PointArray[Pn - 1].getX(), PointArray[0].getY(), PointArray[Pn - 1].getY()));
+	p = PolygonalChain::perimeter();
+	p += sqrt(side(PointArray[0].getX(), PointArray[pn - 1].getX(), PointArray[0].getY(), PointArray[pn - 1].getY()));
 
 	return p;
 }
@@ -138,7 +138,7 @@ double Polygon::area() const
 		s -= PointArray[i + 1].getX() * PointArray[i].getY();
 	}
 
-	s += PointArray[Pn - 1].getX() * PointArray[0].getY();
+	s += PointArray[pn - 1].getX() * PointArray[0].getY();
 	s -= PointArray[0].getX() * PointArray[pn - 1].getY();
 	return fabs(s) / 2;
 }
@@ -160,8 +160,8 @@ bool Triangle::isTriangleIsosceles() const
 
 	a2 = side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY());
 	b2 = side(PointArray[1].getX(), PointArray[2].getX(), PointArray[1].getY(), PointArray[2].getY());
-	c2 = side(PointArray[0].getX(), PointArray[2].getX(), PointArray[0].getY(), PointArray[2].getY()); 
-	
+	c2 = side(PointArray[0].getX(), PointArray[2].getX(), PointArray[0].getY(), PointArray[2].getY());
+
 	return (a2 == b2 || a2 == c2 || b2 == c2);
 }
 
@@ -176,7 +176,7 @@ bool Triangle::hasRightAngle() const
 	b2 = side(PointArray[1].getX(), PointArray[2].getX(), PointArray[1].getY(), PointArray[2].getY());
 	c2 = side(PointArray[0].getX(), PointArray[2].getX(), PointArray[0].getY(), PointArray[2].getY());
 
-	return (a + b == c || a + c == b || c + b == a);
+	return (a2 + b2 == c2 || a2 + c2 == b2 || c2 + b2 == a2);
 }
 
 Triangle::Triangle(const Triangle& t) :Polygon(t)
@@ -211,8 +211,8 @@ double Trapezoid::height() const
 
 	double a, b;
 
-	a = side(PointArray[2].getX(), PointArray[1].getX(), PointArray[2].getY(), PointArray[1].getY());
-	b = side(PointArray[3].getX(), PointArray[0].getX(), PointArray[3].getY(), PointArray[0].getY());
+	a = sqrt(side(PointArray[2].getX(), PointArray[1].getX(), PointArray[2].getY(), PointArray[1].getY()));
+	b = sqrt(side(PointArray[3].getX(), PointArray[0].getX(), PointArray[3].getY(), PointArray[0].getY()));
 	return (2 * s) / (a + b);
 }
 
@@ -239,14 +239,14 @@ double RegularPolygon::Angle() const
 	return ang;
 }
 
-double RegularPolygon::perimeter() const 
+double RegularPolygon::perimeter() const
 {
-	return pn * side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY());
+	return pn * sqrt(side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY()));
 }
 
-double RegularPolygon::area() const 
+double RegularPolygon::area() const
 {
-	return (pn * side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY() *
-		side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY())) / 
-		(4 * tan(PI / pn)));
+	return (pn * sqrt(side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY())) *
+		sqrt(side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY()))) /
+		(4 * tan(PI / pn));
 }
