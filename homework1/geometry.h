@@ -85,7 +85,6 @@ public:
 	RegularPolygon(const RegularPolygon& rp);
 	RegularPolygon& operator=(const RegularPolygon& rp);
 
-	double Angle() const;
 	virtual double perimeter() const;
 	virtual double area() const;
 	
