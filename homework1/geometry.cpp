@@ -30,6 +30,7 @@ Point& Point::operator=(const Point& pt)
 {
 	if (&pt == this)
 		return *this;
+//todo variables shoudnt start with capital letter
 	Px = pt.Px;
 	Py = pt.Py;
 	return *this;
@@ -86,6 +87,7 @@ Point PolygonalChain::getPoint(int k) const
 	return pt;
 }
 
+//todo you dont need function for it
 double perimeterPC(PolygonalChain pc) {
 	double a = 0, p = 0;
 	for (int i = 0; i < pc.Pn - 1; i++)
@@ -170,7 +172,7 @@ bool Triangle::isTriangleIsosceles() const
 Triangle::Triangle(int n, Point* pt_arr) :Polygon(n, pt_arr)
 {
 }
-
+//todo without sqrt
 bool Triangle::hasRightAngle() const
 {
 	double a, b, c;

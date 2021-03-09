@@ -28,6 +28,7 @@ public:
 	PolygonalChain(int n, Point pt_arr[]);
 	PolygonalChain(const PolygonalChain& pc);
 	PolygonalChain& operator=(const PolygonalChain& pc);
+	//todo virtual
 	~PolygonalChain();
 
 	int getN() const { return Pn; }
