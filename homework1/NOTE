@@ -1,0 +1,11 @@
+Pulling https://github.com/MairianeT/IS-2020-prog-2-sem/homework1
+Pull finished
+It's compiled
+It's OK
+geometry.cpp: In member function 'virtual double ClosedPolygonalChain::perimeter() const':
+geometry.cpp:105:9: warning: unused variable 'a' [-Wunused-variable]
+  105 |  double a = 0, p = 0;
+      |         ^
+
+
+
