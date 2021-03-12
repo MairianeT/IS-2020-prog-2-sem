@@ -31,6 +31,7 @@ Point& Point::operator=(const Point& pt)
 	if (&pt == this)
 		return *this;
 	//todo variables shoudnt start with capital letter
+	//dont remove todo's, rename it to fixed
 	px = pt.px;
 	py = pt.py;
 	return *this;
@@ -47,6 +48,7 @@ PolygonalChain::PolygonalChain(int n, Point pt_arr[])
 	}
 }
 
+//todo what side is it
 double side(int x1, int x2, int y1, int y2) {
 	return (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
 }
@@ -78,6 +80,7 @@ PolygonalChain& PolygonalChain::operator=(const PolygonalChain& pc)
 PolygonalChain:: ~PolygonalChain()
 {
 	delete[] PointArray;
+	//todo no point to do it
 	PointArray = nullptr;
 }
 
@@ -131,6 +134,7 @@ Polygon::Polygon(int n, Point pt_arr[]) :ClosedPolygonalChain(n, pt_arr)
 
 double Polygon::area() const
 {
+	//todo you dont need double for s
 	double s = 0;
 	for (int i = 0; i < pn - 1; i++)
 	{
@@ -171,7 +175,7 @@ Triangle::Triangle(int n, Point* pt_arr) :Polygon(n, pt_arr)
 bool Triangle::hasRightAngle() const
 {
 	double a2, b2, c2;
-
+	
 	a2 = side(PointArray[0].getX(), PointArray[1].getX(), PointArray[0].getY(), PointArray[1].getY());
 	b2 = side(PointArray[1].getX(), PointArray[2].getX(), PointArray[1].getY(), PointArray[2].getY());
 	c2 = side(PointArray[0].getX(), PointArray[2].getX(), PointArray[0].getY(), PointArray[2].getY());
