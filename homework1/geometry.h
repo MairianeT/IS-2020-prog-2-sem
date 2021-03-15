@@ -19,7 +19,7 @@ public:
 };
 
 
-class PolygonalChain 
+class PolygonalChain
 {
 public:
 	int pn;
@@ -36,7 +36,7 @@ public:
 	virtual double perimeter() const;
 };
 
-class ClosedPolygonalChain: public PolygonalChain
+class ClosedPolygonalChain : public PolygonalChain
 {
 public:
 	ClosedPolygonalChain(int n, Point pt_arr[]);
@@ -57,7 +57,7 @@ public:
 	double area() const;
 };
 
-class Triangle: public Polygon
+class Triangle : public Polygon
 {
 public:
 	Triangle(int n, Point pt_arr[]);
@@ -65,7 +65,6 @@ public:
 	Triangle& operator=(const Triangle& t);
 
 	bool hasRightAngle() const;
-	bool isTriangleIsosceles() const;
 };
 
 class Trapezoid : public Polygon
@@ -87,7 +86,7 @@ public:
 
 	virtual double perimeter() const;
 	virtual double area() const;
-	
+
 };
 
 
