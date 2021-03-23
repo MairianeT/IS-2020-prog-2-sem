@@ -32,12 +32,12 @@ public:
 	friend Polynomial operator+ (const Polynomial& l_poly, const Polynomial& r_poly);
 	friend Polynomial operator- (const Polynomial& l_poly, const Polynomial& r_poly);
 	friend Polynomial operator- (const Polynomial& poly);
-	friend Polynomial operator-=(const Polynomial& l_poly, const Polynomial& r_poly);
-	friend Polynomial operator+=(const Polynomial& l_poly, const Polynomial& r_poly);
-	friend Polynomial operator*=(const Polynomial& l_poly, const Polynomial& r_poly);
-	friend Polynomial operator*=(const Polynomial& poly, int value);
-	friend Polynomial operator*=(int value, const Polynomial& poly);
-	friend Polynomial operator/=(const Polynomial& poly, int value);
+
+	Polynomial operator-=(const Polynomial& r_poly);
+	Polynomial operator+=(const Polynomial& r_poly);
+	Polynomial operator*=(const Polynomial& r_poly);
+	Polynomial operator*=(int value);
+	Polynomial operator/=(int value);
 
 	friend std::ostream& operator<< (std::ostream& stream, const Polynomial& poly);
 	friend std::istream& operator>> (std::istream& stream, Polynomial& poly);
