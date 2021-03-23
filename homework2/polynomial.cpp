@@ -109,7 +109,7 @@ double Polynomial::get(int value)
 	return res;
 }
 
-int& Polynomial::operator[](int index) const
+int Polynomial::operator[](int index) const
 {
 	int t = 0;
 	if (index < jun_deg || index > sen_deg)
