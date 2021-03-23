@@ -198,7 +198,7 @@ Polynomial Polynomial::operator+=(const Polynomial& r_poly)
 	coefficients = new int[n];
 	for (int i = 0; i < n; i++)
 		coefficients[i] = a[i];
-
+	delete[] a;
 	*this = zero_check();
 
 	return *this;
