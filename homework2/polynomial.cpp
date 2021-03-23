@@ -89,6 +89,7 @@ Polynomial Polynomial::zero_check()
 			a[j] = res.coefficients[j + i];
 		}
 		delete[] res.coefficients;
+		//todo res.coefficients = a
 		res.coefficients = new int[res.n];
 		for (int j = 0; j < res.n; j++)
 		{
@@ -99,6 +100,7 @@ Polynomial Polynomial::zero_check()
 	}
 }
 
+//todo get O(n)
 double Polynomial::get(int value)
 {
 	double res = 0;
@@ -221,6 +223,7 @@ Polynomial Polynomial::operator*=(const Polynomial& r_poly)
 			a[i + j] += r_poly.coefficients[j] * coefficients[i];
 		}
 	delete[] coefficients;
+	//todo coeefcs = a
 	n = a_n;
 	coefficients = new int[n];
 	for (int i = 0; i < n; i++)
@@ -310,6 +313,7 @@ Polynomial operator+(const Polynomial& l_poly, const Polynomial& r_poly)
 	return res;
 }
 
+//todo without creating new object
 Polynomial operator-(const Polynomial& l_poly, const Polynomial& r_poly)
 {
 	return (l_poly + (-1 * r_poly));
