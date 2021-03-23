@@ -157,6 +157,100 @@ int& Polynomial::operator[](int index)
 	return coefficients[index - jun_deg];
 }
 
+Polynomial Polynomial::operator-=(const Polynomial& r_poly)
+{
+	return *this + (r_poly * -1);
+}
+
+Polynomial Polynomial::operator+=(const Polynomial& r_poly)
+{
+	if (n == 0)
+		return r_poly;
+	if (r_poly.n == 0)
+		return *this;
+
+	int a_jd, a_sd;
+
+	if (jun_deg < r_poly.jun_deg)
+		a_jd = jun_deg;
+	else
+		a_jd = r_poly.jun_deg;
+
+	if (r_poly.sen_deg < sen_deg)
+		a_sd = sen_deg;
+	else
+		a_sd = r_poly.sen_deg;
+
+	int* a = new int[a_sd - a_jd + 1];
+	for (int i = 0; i < a_sd - a_jd + 1; i++)
+		a[i] = 0;
+
+	for (int i = 0; i < r_poly.n; i++) {
+		a[r_poly.jun_deg - a_jd + i] += r_poly.coefficients[i];
+	}
+	for (int i = 0; i < n; i++) {
+		a[jun_deg - a_jd + i] += coefficients[i];
+	}
+	jun_deg = a_jd;
+	sen_deg = a_sd;
+	n = a_sd - a_jd + 1;
+	delete[] coefficients;
+	coefficients = new int[n];
+	for (int i = 0; i < n; i++)
+		coefficients[i] = a[i];
+
+	*this = zero_check();
+
+	return *this;
+}
+
+Polynomial Polynomial::operator*=(const Polynomial& r_poly)
+{
+	if (n == 0 || r_poly.n == 0) return Polynomial();
+
+	jun_deg += r_poly.jun_deg;
+	sen_deg += r_poly.sen_deg;
+	int a_n = sen_deg - jun_deg + 1;
+
+	int* a = new int[a_n];
+	for (int i = 0; i < a_n; i++)
+		a[i] = 0;
+	
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < r_poly.n; j++) {
+			a[i + j] += r_poly.coefficients[j] * coefficients[i];
+		}
+	delete[] coefficients;
+	n = a_n;
+	coefficients = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		coefficients[i] = a[i];
+	}
+	delete[] a;
+	return *this;
+}
+
+Polynomial Polynomial::operator*=(int value)
+{
+	if (value == 0) return Polynomial();
+
+	for (int i = 0; i < n; i++)
+	{
+		coefficients[i] *= value;
+	}
+	return *this;
+}
+
+Polynomial Polynomial::operator/=(int value)
+{
+	for (int i = 0; i < n; i++) {
+		coefficients[i] /= value;
+	}
+	*this = zero_check();
+	return *this;
+}
+
 bool operator==(const Polynomial& l_poly, const Polynomial& r_poly)
 {
 	Polynomial l_res(l_poly.jun_deg, l_poly.sen_deg, l_poly.coefficients);
@@ -179,12 +273,8 @@ bool operator!=(const Polynomial& l_poly, const Polynomial& r_poly)
 
 Polynomial operator*(int value, const Polynomial& poly)
 {
-	if (value == 0) return Polynomial();
-	Polynomial res(poly.jun_deg, poly.sen_deg, poly.coefficients);
-	for (int i = 0; i < poly.n; i++)
-	{
-		res.coefficients[i] *= value;
-	}
+	Polynomial res = poly;
+	res *= value;
 	return res;
 }
 
@@ -195,74 +285,28 @@ Polynomial operator*(const Polynomial& poly, int value)
 
 Polynomial operator*(const Polynomial& l_poly, const Polynomial& r_poly)
 {
-	if (l_poly.n == 0 || r_poly.n == 0) return Polynomial();
-
-	Polynomial res = Polynomial();
-	res.jun_deg = l_poly.jun_deg + r_poly.jun_deg;
-	res.sen_deg = l_poly.sen_deg + r_poly.sen_deg;
-	res.n = res.sen_deg - res.jun_deg + 1;
-	delete[] res.coefficients;
-	res.coefficients = new int[res.n];
-	for (int i = 0; i < res.n; i++) {
-		res.coefficients[i] = 0;
-	}
-	for (int i = 0; i < l_poly.n; i++)
-		for (int j = 0; j < r_poly.n; j++) {
-			res.coefficients[i + j] += r_poly.coefficients[j] * l_poly.coefficients[i];
-		}
-
+	Polynomial res = l_poly;
+	res *= r_poly;
 	return res;
 }
 
 Polynomial operator/(const Polynomial& poly, int value)
 {
-	Polynomial res(poly.jun_deg, poly.sen_deg, poly.coefficients);
-	for (int i = 0; i < res.n; i++) {
-		res.coefficients[i] /= value;
-	}
-	int i = 0;
-	while (res.coefficients[i] == 0) {
-		i++;
-	}
-	res = res.zero_check();
+	Polynomial res = poly;
+	res /= value;
 	return res;
 }
 
 Polynomial operator+(const Polynomial& l_poly, const Polynomial& r_poly)
 {
-
 	if (l_poly.n == 0)
 		return r_poly;
 	if (r_poly.n == 0)
 		return l_poly;
 
-	Polynomial res = Polynomial();
+	Polynomial res = l_poly;
+	res += r_poly;
 
-	if (l_poly.jun_deg < r_poly.jun_deg)
-		res.jun_deg = l_poly.jun_deg;
-	else
-		res.jun_deg = r_poly.jun_deg;
-	if (r_poly.sen_deg < l_poly.sen_deg)
-		res.sen_deg = l_poly.sen_deg;
-	else
-		res.sen_deg = r_poly.sen_deg;
-
-	res.n = res.sen_deg - res.jun_deg + 1;
-
-	delete[] res.coefficients;
-	res.coefficients = new int[res.n];
-
-	for (int i = 0; i < res.n; i++) {
-		res.coefficients[i] = 0;
-	}
-
-	for (int i = 0; i < l_poly.n; i++)
-		res.coefficients[l_poly.jun_deg - res.jun_deg + i] += l_poly.coefficients[i];
-
-	for (int i = 0; i < r_poly.n; i++)
-		res.coefficients[r_poly.jun_deg - res.jun_deg + i] += r_poly.coefficients[i];
-	
-	res = res.zero_check();
 	return res;
 }
 
@@ -276,35 +320,7 @@ Polynomial operator-(const Polynomial& poly)
 	return (-1 * poly);
 }
 
-Polynomial operator-=(const Polynomial& l_poly, const Polynomial& r_poly)
-{
-	return l_poly - r_poly;
-}
 
-Polynomial operator+=(const Polynomial& l_poly, const Polynomial& r_poly)
-{
-	return l_poly + r_poly;
-}
-
-Polynomial operator*=(const Polynomial& l_poly, const Polynomial& r_poly)
-{
-	return l_poly * r_poly;
-}
-
-Polynomial operator*=(const Polynomial& poly, int value)
-{
-	return poly * value;
-}
-
-Polynomial operator*=(int value, const Polynomial& poly)
-{
-	return poly * value;
-}
-
-Polynomial operator/=(const Polynomial& poly, int value)
-{
-	return poly / value;
-}
 
 std::ostream& operator<< (std::ostream& stream, const Polynomial& poly)
 {
