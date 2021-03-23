@@ -22,7 +22,7 @@ public:
 
 	Polynomial zero_check();
 	double get(int value);
-	int& operator[](int index) const;
+	int operator[](int index) const;
 	int& operator[](int index);
 
 	friend Polynomial operator* (int value, const Polynomial& poly);
