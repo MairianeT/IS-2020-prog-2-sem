@@ -1,5 +1,6 @@
 #include "polynomial.h"
 #include <iostream>
+#include <algorithm>
 #include <sstream>
 #include <math.h>
 
@@ -257,25 +258,19 @@ Polynomial Polynomial::operator*=(const Polynomial& r_poly)
 	return *this;
 }
 
-Polynomial Polynomial::operator*=(int value)
-{
-	if (value == 0) return Polynomial();
-
-	for (int i = 0; i < n; i++)
-	{
-		coefficients[i] *= value;
-	}
+Polynomial& Polynomial::operator*=(int value) {
+	auto mult = [value](int& el) {el = value * el; };
+	std::for_each(coefficients, coefficients + n, mult);
 	return *this;
 }
 
-Polynomial Polynomial::operator/=(int value)
-{
-	for (int i = 0; i < n; i++) {
-		coefficients[i] /= value;
-	}
-	*this = zero_check();
+
+Polynomial& Polynomial::operator/=(int value) {
+	auto mult = [value](int& el) {el = el / value; };
+	std::for_each(coefficients, coefficients + n, mult);
 	return *this;
 }
+
 
 bool operator==(const Polynomial& l_poly, const Polynomial& r_poly)
 {
