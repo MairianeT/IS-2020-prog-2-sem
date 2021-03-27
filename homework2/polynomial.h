@@ -36,8 +36,8 @@ public:
 	Polynomial operator-=(const Polynomial& r_poly);
 	Polynomial operator+=(const Polynomial& r_poly);
 	Polynomial operator*=(const Polynomial& r_poly);
-	Polynomial operator*=(int value);
-	Polynomial operator/=(int value);
+	Polynomial& operator*=(int value);
+	Polynomial& operator/=(int value);
 
 	friend std::ostream& operator<< (std::ostream& stream, const Polynomial& poly);
 	friend std::istream& operator>> (std::istream& stream, Polynomial& poly);
@@ -45,4 +45,3 @@ public:
 
 
 #endif
-
