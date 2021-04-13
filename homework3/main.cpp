@@ -7,6 +7,9 @@
 #include <math.h>
 #pragma execution_character_set("utf-8")
 
+int km_in_degree_x = 40088.55 / 360; 
+int km_in_degree_y = 20088 / 360; 
+
 void PrintSet(const std::set<std::string>& s) {
     for (auto el : s) {
         std::cout << el << std::endl;
@@ -109,7 +112,7 @@ void Distance(const std::vector<station>& st){
                         y0 = s.y;
                     }
                     else {
-                            dist[i] += sqrt(pow(40088.55/360*(s.x - x0), 2) + pow(20088/360*(s.y - y0), 2));
+                            dist[i] += sqrt(pow(km_in_degree_x*(s.x - x0), 2) + pow(km_in_degree_y*(s.y - y0), 2));
                             x0 = s.x;
                             y0 = s.y;
                     }
