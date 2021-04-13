@@ -7,8 +7,8 @@
 #include <math.h>
 #pragma execution_character_set("utf-8")
 
-int km_in_degree_x = 40088.55 / 360; 
-int km_in_degree_y = 20088 / 360; 
+double km_in_degree_x = 40088.55 / 360; 
+double km_in_degree_y = 20088 / 360; 
 
 void PrintSet(const std::set<std::string>& s) {
     for (auto el : s) {
