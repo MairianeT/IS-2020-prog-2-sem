@@ -106,13 +106,12 @@ ForwardIterator findBackward(ForwardIterator begin, ForwardIterator end, const T
 template <class BidirectionalIterator, class BinaryPredicate>
 bool isPalindrome(BidirectionalIterator begin, BidirectionalIterator end, const BinaryPredicate& function) {
 	--end;
-	while (begin != end) {
+	for (; begin != end; --end, ++begin) {
 		if (!function(*begin, *end)) {
 			return false;
 		}
-		++begin;
-		if (begin != end)
-		--end;
+		if (--end == begin) break;
+		else ++end;
 	}
 	return true;
 };
