@@ -1,6 +1,7 @@
 #ifndef PREDICATE_HPP 
 #define PREDICATE_HPP
 
+#include <functional>
 
 template <class InputIterator, class UnaryPredicate>
 bool allOf(InputIterator begin, InputIterator end, const UnaryPredicate& function) {
