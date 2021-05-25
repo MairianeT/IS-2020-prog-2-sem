@@ -203,6 +203,7 @@ public:
         return buffer[(tail - 1 - i) % capacity];
     }
 
+    //todo index and size information in exceptions
     T operator[](int i) const {
         int sizeToInt = size;
         if (i >= sizeToInt)
