@@ -1,3 +1,7 @@
+#include <string>
+
+using namespace std;
+
 template <class T>
 class CircularBuffer {
 private:
@@ -51,11 +55,11 @@ public:
         using reference [[maybe_unused]] = value_type&;
 
         Iterator(T* ptr, T* b, size_t p, size_t t, int c)
-            : ptr(ptr), buf(b), pos(p), tail(t), capacity(c) {}
+                : ptr(ptr), buf(b), pos(p), tail(t), capacity(c){}
 
         Iterator() : buf(nullptr) {}
 
-        Iterator& operator++ () {
+        Iterator &operator++ () {
             ++ptr;
             ++pos;
             return *this;
@@ -73,7 +77,7 @@ public:
             return Iterator(ptr + value, buf, pos + value, tail, capacity);
         }
 
-        Iterator& operator+= (int value) {
+        Iterator &operator+= (int value) {
             ptr += value;
             pos += value;
             return *this;
@@ -89,7 +93,7 @@ public:
             return Iterator(ptr - value, buf, pos - value, tail, capacity);
         }
 
-        difference_type operator- (Iterator it) {
+        difference_type operator- (Iterator it){
             return ptr - it.ptr;
         }
 
@@ -124,7 +128,7 @@ public:
         }
     };
 
-    explicit CircularBuffer(T value) {
+    explicit CircularBuffer (T value) {
         capacity = value;
         buffer = new T[capacity];
     }
@@ -182,7 +186,7 @@ public:
         buffer = tmp;
     }
 
-    T first() const {
+    T first() const{
         if (size == 0)
             throw std::out_of_range("CircularBuffer is empty");
         if (tail != 0)
@@ -190,7 +194,7 @@ public:
         else return buffer[capacity - 1];
     }
 
-    T last() const {
+    T last() const{
         if (size == 0)
             throw std::out_of_range("CircularBuffer is empty");
         return buffer[head];
@@ -199,24 +203,23 @@ public:
     T &operator[](int i) {
         int sizeToInt = size;
         if (sizeToInt == 0){
-            throw std::out_of_range("CircularBuffer is empty");
+            throw std::out_of_range("Buffer is empty");
         }
         if (i >= sizeToInt){
-            string answer = "Index out of range: asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
-            throw std::out_of_range(answer);
+            string str = "Index out of range, asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1) + ")";
+            throw std::out_of_range(str);
         }
         return buffer[(tail - 1 - i) % capacity];
     }
-
-    //fixed index and size information in exception
+   //fixed index and size information in exception
     T operator[](int i) const{
         int sizeToInt = size;
         if (sizeToInt == 0){
-            throw std::out_of_range("CircularBuffer is empty");
+            throw std::out_of_range("Buffer is empty");
         }
         if (i >= sizeToInt){
-            string answer = "Index out of range: asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
-            throw std::out_of_range(answer);
+            string str = "Index out of range, asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1) + ")";
+            throw std::out_of_range(str);
         }
         return buffer[(tail - 1 - i) % capacity];
     }
