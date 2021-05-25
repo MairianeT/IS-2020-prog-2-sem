@@ -196,18 +196,28 @@ public:
         return buffer[head];
     }
 
-    T& operator[](int i) {
+    T &operator[](int i) {
         int sizeToInt = size;
-        if (i >= sizeToInt)
-            throw std::out_of_range("Index out of range");
+        if (sizeToInt == 0){
+            throw std::out_of_range("CircularBuffer is empty");
+        }
+        if (i >= sizeToInt){
+            string answer = "Index out of range: asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
+            throw std::out_of_range(answer);
+        }
         return buffer[(tail - 1 - i) % capacity];
     }
 
-    //todo index and size information in exceptions
-    T operator[](int i) const {
+    //fixed index and size information in exception
+    T operator[](int i) const{
         int sizeToInt = size;
-        if (i >= sizeToInt)
-            throw std::out_of_range("Index out of range");
+        if (sizeToInt == 0){
+            throw std::out_of_range("CircularBuffer is empty");
+        }
+        if (i >= sizeToInt){
+            string answer = "Index out of range: asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
+            throw std::out_of_range(answer);
+        }
         return buffer[(tail - 1 - i) % capacity];
     }
 
