@@ -206,7 +206,7 @@ public:
             throw std::out_of_range("Buffer is empty");
         }
         if (i >= sizeToInt){
-            string str = "Index out of range, asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1) + ")";
+            string str = "Index out of range, asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
             throw std::out_of_range(str);
         }
         return buffer[(tail - 1 - i) % capacity];
@@ -218,7 +218,7 @@ public:
             throw std::out_of_range("Buffer is empty");
         }
         if (i >= sizeToInt){
-            string str = "Index out of range, asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1) + ")";
+            string str = "Index out of range, asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
             throw std::out_of_range(str);
         }
         return buffer[(tail - 1 - i) % capacity];
