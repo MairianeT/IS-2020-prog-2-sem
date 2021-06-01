@@ -1,58 +1,22 @@
 Pulling https://github.com/MairianeT/IS-2020-prog-2-sem/homework5
 Pull finished
+main.cpp: In function 'int main()':
+main.cpp:203:32: error: no matching function for call to 'CircularBuffer<std::__cxx11::basic_string<char> >::CircularBuffer(int)'
+  203 |     CircularBuffer<string> cs(4);
+      |                                ^
 In file included from main.cpp:10:
-CircularBuffer.hpp: In member function 'T& CircularBuffer<T>::operator[](int)':
-CircularBuffer.hpp:205:13: error: 'string' was not declared in this scope
-  205 |             string answer = "Index out of range: asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
-      |             ^~~~~~
-CircularBuffer.hpp:205:13: note: suggested alternatives:
-In file included from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\iosfwd:39,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ios:38,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ostream:38,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\iostream:39,
-                 from main.cpp:1:
-c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\stringfwd.h:79:33: note:   'std::string'
-   79 |   typedef basic_string<char>    string;
-      |                                 ^~~~~~
-In file included from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\locale_classes.h:40,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\ios_base.h:41,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ios:42,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ostream:38,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\iostream:39,
-                 from main.cpp:1:
-c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\string:67:11: note:   'std::pmr::string'
-   67 |     using string    = basic_string<char>;
-      |           ^~~~~~
-In file included from main.cpp:10:
-CircularBuffer.hpp:206:37: error: 'answer' was not declared in this scope
-  206 |             throw std::out_of_range(answer);
-      |                                     ^~~~~~
-CircularBuffer.hpp: In member function 'T CircularBuffer<T>::operator[](int) const':
-CircularBuffer.hpp:218:13: error: 'string' was not declared in this scope
-  218 |             string answer = "Index out of range: asking for " + std::to_string(i) + ", max index " + std::to_string(sizeToInt - 1);
-      |             ^~~~~~
-CircularBuffer.hpp:218:13: note: suggested alternatives:
-In file included from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\iosfwd:39,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ios:38,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ostream:38,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\iostream:39,
-                 from main.cpp:1:
-c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\stringfwd.h:79:33: note:   'std::string'
-   79 |   typedef basic_string<char>    string;
-      |                                 ^~~~~~
-In file included from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\locale_classes.h:40,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\bits\ios_base.h:41,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ios:42,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\ostream:38,
-                 from c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\iostream:39,
-                 from main.cpp:1:
-c:\mingw\lib\gcc\mingw32\9.2.0\include\c++\string:67:11: note:   'std::pmr::string'
-   67 |     using string    = basic_string<char>;
-      |           ^~~~~~
-In file included from main.cpp:10:
-CircularBuffer.hpp:219:37: error: 'answer' was not declared in this scope
-  219 |             throw std::out_of_range(answer);
-      |                                     ^~~~~~
+CircularBuffer.hpp:131:14: note: candidate: 'CircularBuffer<T>::CircularBuffer(T) [with T = std::__cxx11::basic_string<char>]'
+  131 |     explicit CircularBuffer (T value) {
+      |              ^~~~~~~~~~~~~~
+CircularBuffer.hpp:131:32: note:   no known conversion for argument 1 from 'int' to 'std::__cxx11::basic_string<char>'
+  131 |     explicit CircularBuffer (T value) {
+      |                              ~~^~~~~
+CircularBuffer.hpp:6:7: note: candidate: 'constexpr CircularBuffer<std::__cxx11::basic_string<char> >::CircularBuffer(const CircularBuffer<std::__cxx11::basic_string<char> >&)'
+    6 | class CircularBuffer {
+      |       ^~~~~~~~~~~~~~
+CircularBuffer.hpp:6:7: note:   no known conversion for argument 1 from 'int' to 'const CircularBuffer<std::__cxx11::basic_string<char> >&'
+CircularBuffer.hpp:6:7: note: candidate: 'constexpr CircularBuffer<std::__cxx11::basic_string<char> >::CircularBuffer(CircularBuffer<std::__cxx11::basic_string<char> >&&)'
+CircularBuffer.hpp:6:7: note:   no known conversion for argument 1 from 'int' to 'CircularBuffer<std::__cxx11::basic_string<char> >&&'
 make: *** [makefile:2: all] Error 1
 
 
